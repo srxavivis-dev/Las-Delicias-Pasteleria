@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Puntos Mágicos – Programa de Recompensas | Pastelería Las Delicias</title>
+<meta content="Fideliza tu dulzura con el Club Mágico de Las Delicias. Gana puntos y recompensas con cada compra artesanal." name="description"/>
+<meta content="pastelería, recompensas, fidelidad, Las Delicias, pasteles artesanales, puntos mágicos, club mágico" name="keywords"/>
+<meta content="Pastelería Las Delicias" name="author"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&amp;family=Pacifico&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* ---------------------------------------------
+        VARIABLES GLOBALES (Fácil de editar)
+        ---------------------------------------------
+        */
+        :root {
+            /* Paleta de Colores */
+            --color-rosa-pastel: #FFC0CB;
+            --color-durazno: #FFDAB9;
+            --color-crema: #FFF8E1;
+            --color-beige: #F5F0E1;
+            --color-marron-claro: #8B5E3C; /* Nivel Nuez */
+            --color-marron-oscuro: #5A3825;
+            --color-dorado: #D4AF37;
+            --color-hueso: #F5F0E1; /* Nivel Queso */
+            --color-manjar: #F8D774; /* Nivel Manjar */
+            --color-mermelada: #E15B64; /* Nivel Mermelada */
+            --color-texto: #4E342E;
+            --color-blanco: #FFFFFF;
+
+            /* Tipografía */
+            --font-principal: 'Nunito', sans-serif;
+            --font-display: 'Pacifico', cursive;
+
+            /* Estilos Visuales */
+            --border-radius: 12px;
+            --shadow-suave: 0 4px 12px rgba(90, 56, 37, 0.1);
+            --shadow-fuerte: 0 6px 15px rgba(90, 56, 37, 0.15);
+            
+            /* Textura Ligera (Opcional) */
+            /* --textura-crema: url('data:image/svg+xml,...'); */
+        }
+
+        /* ---------------------------------------------
+        RESETS Y ESTILOS BASE
+        ---------------------------------------------
+        */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-principal);
+            background-color: var(--color-crema);
+            /* background-image: var(--textura-crema); */
+            color: var(--color-texto);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ---------------------------------------------
+        ACCESIBILIDAD
+        ---------------------------------------------
+        */
+        :focus-visible {
+            outline: 3px solid var(--color-dorado);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        /* ---------------------------------------------
+        COMPONENTES REUTILIZABLES
+        ---------------------------------------------
+        */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 60px 0;
+            background-color: var(--color-blanco);
+            margin-bottom: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-suave);
+        }
+        
+        /* Efecto de secciones alternas */
+        main section:nth-of-type(odd) {
+             background-color: var(--color-beige);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            color: var(--color-marron-claro);
+            text-shadow: 1px 1px 2px rgba(255, 248, 225, 0.5); /* Sombra suave 'cremosa' */
+            line-height: 1.3;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--color-marron-oscuro);
+        }
+        
+        h4 {
+            font-size: 1.5rem;
+            color: var(--color-mermelada);
+            margin-top: 20px;
+        }
+
+        a {
+            color: var(--color-marron-claro);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-dorado);
+            text-decoration: underline;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* Estilo de botones */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            font-family: var(--font-principal);
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border-radius: 50px; /* Bordes redondeados */
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-suave);
+        }
+
+        .btn-register {
+            background-color: var(--color-dorado);
+            color: var(--color-blanco);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .btn-register:hover {
+            background-color: var(--color-marron-claro);
+            color: var(--color-blanco);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: var(--shadow-fuerte);
+            text-decoration: none;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border-color: var(--color-marron-claro);
+            color: var(--color-marron-claro);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--color-marron-claro);
+            color: var(--color-crema);
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        /* ---------------------------------------------
+        ESTILOS DEL HEADER
+        ---------------------------------------------
+        */
+        .main-header {
+            padding: 60px 20px 70px 20px;
+            text-align: center;
+            /* Gradiente cálido y artesanal */
+            background-image: linear-gradient(170deg, var(--color-durazno), var(--color-crema) 70%);
+            border-bottom-left-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+            box-shadow: var(--shadow-suave);
+            margin-bottom: 20px;
+        }
+
+        .main-header .logo-placeholder {
+            width: 90px;
+            height: 90px;
+            background-color: var(--color-beige);
+            border: 3px dashed var(--color-dorado);
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--color-marron-claro);
+        }
+
+        .main-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0;
+            color: var(--color-marron-oscuro);
+        }
+
+        .main-header .subtitle {
+            font-family: var(--font-principal);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-mermelada);
+            margin-bottom: 20px;
+        }
+
+        .main-header .tagline {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            color: var(--color-marron-oscuro);
+            max-width: 500px;
+            margin: 0 auto 30px auto;
+        }
+
+        /* ---------------------------------------------
+        ESTILOS DE SECCIONES
+        ---------------------------------------------
+        */
+        
+        /* Grid 2 Columnas (Objetivos, Flujo) */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .grid-2col ul, .grid-2col ol {
+            list-style-type: '🍰 '; /* Viñeta personalizada */
+            padding-left: 30px;
+        }
+        
+        .grid-2col li {
+            padding-left: 10px;
+        }
+
+        /* Mecánica - Tabla */
+        .tabla-recompensas {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: var(--border-radius);
+            overflow: hidden; /* Para que el radius afecte a th */
+            box-shadow: var(--shadow-suave);
+        }
+
+        .tabla-recompensas th,
+        .tabla-recompensas td {
+            border: 1px solid var(--color-durazno);
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .tabla-recompensas th {
+            background-color: var(--color-beige);
+            color: var(--color-marron-oscuro);
+            font-weight: 700;
+        }
+        
+        .tabla-recompensas tr:nth-child(even) {
+            background-color: var(--color-crema);
+        }
+
+        /* Mecánica - Ejemplo */
+        blockquote {
+            background-color: var(--color-crema);
+            border-left: 5px solid var(--color-dorado);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            font-style: italic;
+        }
+        
+        /* Calculadora Interactiva */
+        .calculadora-box {
+            background-color: var(--color-beige);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 2px dashed var(--color-marron-claro);
+            max-width: 600px;
+            margin: 40px auto 0 auto;
+        }
+        
+        .calculadora-box label {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+        
+        .calculadora-box input[type="number"] {
+            font-family: var(--font-principal);
+            font-size: 1.2rem;
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid var(--color-marron-claro);
+            width: 150px;
+            text-align: center;
+        }
+        
+        .calculadora-box .resultado {
+            margin-top: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .calculadora-box #puntos-resultado {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--color-mermelada);
+        }
+
+        /* Niveles - Grid */
+        .niveles-grid {
+            display: grid;
+            /* (Requerido) Grid responsive */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .nivel-card {
+            padding: 30px 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-suave);
+            border: 4px solid transparent; /* Espacio para el borde dorado */
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        
+        /* (Requerido) Hover Niveles */
+        .nivel-card:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-fuerte);
+            border-color: var(--color-dorado);
+        }
+
+        .nivel-card .icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
+        .nivel-card h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .nivel-card .rango-puntos {
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .nivel-card ul {
+            padding-left: 20px;
+            list-style-type: '✨ ';
+        }
+        
+        .nivel-card li {
+            padding-left: 5px;
+            margin-bottom: 8px;
+        }
+
+        /* (Requerido) Colores Específicos de Niveles */
+        #nivel-nuez {
+            background-color: var(--color-marron-claro); /* #8B5E3C */
+            color: var(--color-crema); /* #FFF8E1 */
+        }
+        #nivel-nuez h3 { color: var(--color-crema); }
+
+        #nivel-queso {
+            background-color: var(--color-hueso); /* #F5F0E1 */
+            color: var(--color-marron-oscuro); /* #5A3825 */
+        }
+        #nivel-queso h3 { color: var(--color-marron-oscuro); }
+        
+        #nivel-manjar {
+            background-color: var(--color-manjar); /* #F8D774 */
+            color: var(--color-texto); /* #4E342E */
+        }
+        #nivel-manjar h3 { color: var(--color-texto); }
+
+        #nivel-mermelada {
+            background-color: var(--color-mermelada); /* #E15B64 */
+            color: var(--color-blanco); /* #FFFFFF */
+        }
+        #nivel-mermelada h3 { color: var(--color-blanco); }
+
+
+        /* Recompensas */
+        #recompensas ul {
+            padding-left: 10px;
+            list-style-type: none;
+        }
+        
+        #recompensas li {
+            font-size: 1.1rem;
+        }
+
+        /* Implementación y Botón PDF */
+        .botones-accion {
+            text-align: center;
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Marketing */
+        .marketing-lema {
+            font-size: 2.5rem;
+            text-align: center;
+            color: var(--color-marron-oscuro);
+            margin-bottom: 30px;
+        }
+        
+        .img-decorativa {
+            display: block;
+            max-width: 100%;
+            width: 500px;
+            height: 300px;
+            object-fit: cover;
+            margin: 20px auto 0 auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-fuerte);
+            background-color: var(--color-beige); /* Placeholder */
+            border: 4px solid var(--color-blanco);
+        }
+
+        /* KPIs */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .kpi-card {
+            background-color: var(--color-crema);
+            padding: 25px;
+            text-align: center;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-suave);
+            border: 2px solid var(--color-beige);
+        }
+        
+        .kpi-card .kpi-titulo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--color-marron-claro);
+        }
+        
+        .kpi-card .kpi-valor {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-dorado);
+            line-height: 1.2;
+            margin-top: 10px;
+        }
+
+        /* ---------------------------------------------
+        FOOTER
+        ---------------------------------------------
+        */
+        .main-footer {
+            background-color: var(--color-beige);
+            color: var(--color-marron-oscuro);
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 20px;
+            border-top: 5px solid var(--color-durazno);
+        }
+        
+        .main-footer .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .main-footer .footer-links a {
+            color: var(--color-marron-oscuro);
+            margin: 0 15px;
+            font-weight: 700;
+        }
+        
+        .main-footer .footer-links a:hover {
+            color: var(--color-dorado);
+        }
+        
+        .main-footer .copyright {
+            font-size: 0.9rem;
+        }
+        
+        /* ---------------------------------------------
+        MEDIA QUERIES (RESPONSIVE)
+        ---------------------------------------------
+        */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2.2rem; }
+            .main-header .tagline { font-size: 1.4rem; }
+            
+            .grid-2col {
+                grid-template-columns: 1fr; /* Stack en móvil */
+                gap: 30px;
+            }
+            
+            .calculadora-box {
+                padding: 20px;
+            }
+            
+            .calculadora-box label {
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            .main-header .subtitle { font-size: 1.2rem; }
+            .main-header .tagline { font-size: 1.2rem; }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .botones-accion {
+                gap: 15px;
+            }
+        }
+        
+        /* ---------------------------------------------
+        ESTILOS DE IMPRESIÓN (Para "Descargar PDF")
+        ---------------------------------------------
+        */
+        @media print {
+            body {
+                background-color: var(--color-blanco);
+                color: #000;
+                font-size: 12pt;
+            }
+            
+            .main-header, 
+            .calculadora-box,
+            .botones-accion,
+            .main-footer,
+            section#kpis,
+            section#implementacion {
+                display: none; /* Ocultar elementos no esenciales */
+            }
+            
+            section {
+                padding: 20px 0;
+                box-shadow: none;
+                border-radius: 0;
+                margin-bottom: 15px;
+                background-color: transparent !important; /* Forzar fondo */
+            }
+            
+            h1, h2, h3, h4 {
+                color: #000 !important;
+                text-shadow: none;
+                page-break-after: avoid;
+            }
+            
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+            
+            .niveles-grid, .kpi-grid, .grid-2col {
+                grid-template-columns: 1fr 1fr; /* Dos columnas en impresión */
+                gap: 15px;
+            }
+            
+            .nivel-card {
+                box-shadow: none;
+                border: 2px solid #ccc;
+                page-break-inside: avoid;
+            }
+            
+            /* Forzar impresión de colores de fondo de las tarjetas */
+            #nivel-nuez { background-color: #8B5E3C !important; color: #FFF8E1 !important; }
+            #nivel-queso { background-color: #F5F0E1 !important; color: #5A3825 !important; }
+            #nivel-manjar { background-color: #F8D774 !important; color: #4E342E !important; }
+            #nivel-mermelada { background-color: #E15B64 !important; color: #FFFFFF !important; }
+
+            /* (Necesario para que Chrome/Safari impriman fondos) */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            .tabla-recompensas {
+                box-shadow: none;
+            }
+            
+            .tabla-recompensas th {
+                background-color: #eee !important;
+            }
+            
+            .img-decorativa {
+                display: none; /* Ahorrar tinta */
+            }
+            
+            a {
+                text-decoration: none;
+                color: #000 !important;
+            }
+            
+            a[href]::after {
+                content: " (" attr(href) ")"; /* Mostrar URLs */
+                font-size: 0.9em;
+                color: #555;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<header class="main-header">
+<img alt="Logo Pastelería Las Delicias" src="https://cdn-icons-png.flaticon.com/512/706/706164.png" style="width:90px;height:90px;border-radius:50%;box-shadow:0 2px 5px rgba(0,0,0,0.2);"/>
+<h1>Puntos Mágicos · Las Delicias</h1>
+<p class="subtitle">Club Mágico</p>
+<p class="tagline">“Cada pastel cuenta una historia. En Las Delicias, las emociones también se hornean.”</p>
+<a class="btn btn-register" href="https://forms.gle/tuFormularioGoogle" rel="noopener noreferrer" target="_blank">
+            Regístrate en el Club Mágico
+        </a>
+</header>
+<main>
+<section id="idea">
+<div class="container">
+<h2>Nuestra Dulce Promesa</h2>
+<p style="text-align: center; max-width: 800px; margin: 0 auto; font-size: 1.2rem;">
+                    En "Las Delicias", no solo horneamos pasteles; creamos momentos. Cada ingrediente es elegido con amor y cada decoración es un toque de arte artesanal. Creemos que la dulzura debe ser recompensada, y por eso nace <strong>Puntos Mágicos</strong>: un club para celebrar tu fidelidad y convertir cada compra en una nueva experiencia deliciosa.
+                </p>
+</div>
+</section>
+<section id="objetivos">
+<div class="container">
+<div class="grid-2col">
+<div>
+<h3>🎯 Objetivo del Programa</h3>
+<ul>
+<li><strong>Fidelizar</strong> a nuestros clientes recurrentes.</li>
+<li><strong>Agradecer</strong> su preferencia con beneficios tangibles.</li>
+<li><strong>Crear una comunidad</strong> de amantes de la repostería artesanal.</li>
+<li><strong>Incrementar</strong> la frecuencia de compra y el ticket promedio.</li>
+</ul>
+</div>
+<div>
+<h3>👨‍👩‍👧‍👦 Público Objetivo</h3>
+<ul>
+<li><strong>Clientes habituales</strong> que nos visitan semanalmente.</li>
+<li><strong>Familias</strong> que celebran sus momentos especiales con nosotros.</li>
+<li><strong>Amantes del café y postres</strong> que buscan calidad artesanal.</li>
+<li><strong>Nuevos clientes</strong> que deseamos convertir en fans de la marca.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="mecanica">
+<div class="container">
+<h2>¿Cómo funciona la Magia?</h2>
+<h3>Regla de Acumulación</h3>
+<p>Es muy sencillo: por cada <strong>$10 MXN de compra</strong> en cualquiera de nuestros productos (pasteles, bebidas, postres individuales), acumulas <strong>1 Punto Mágico</strong>.</p>
+<h3>Bonos Adicionales</h3>
+<ul>
+<li><strong>Bono de Bienvenida:</strong> 25 Puntos Mágicos solo por registrarte.</li>
+<li><strong>Bono de Cumpleaños:</strong> ¡El doble de puntos en todas tus compras durante la semana de tu cumpleaños!</li>
+<li><strong>Bono por Referido:</strong> 50 Puntos Mágicos cuando un amigo se registre y realice su primera compra.</li>
+</ul>
+<h3>Canje y Recompensas</h3>
+<p>Acumula puntos y canjéalos por tus productos favoritos. ¡Tú eliges cuándo disfrutar tu recompensa!</p>
+<div style="overflow-x: auto;"> <table class="tabla-recompensas">
+<thead>
+<tr>
+<th>Puntos Mágicos</th>
+<th>Recompensa (Ejemplos)</th>
+<th>Categoría</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>50 Puntos</td>
+<td>1 Café Americano o Espresso</td>
+<td>Bebida</td>
+</tr>
+<tr>
+<td>100 Puntos</td>
+<td>1 Rebanada de Pastel del Día o 1 Galleta Artesanal</td>
+<td>Postre Individual</td>
+</tr>
+<tr>
+<td>250 Puntos</td>
+<td>1 Pastelito Individual (Ej. Mini Cheesecake)</td>
+<td>Especialidad</td>
+</tr>
+<tr>
+<td>500 Puntos</td>
+<td>$100 MXN de descuento en tu compra total</td>
+<td>Descuento</td>
+</tr>
+<tr>
+<td>1000 Puntos</td>
+<td>1 Pastel Mediano (Sabores seleccionados)</td>
+<td>Pastel Completo</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>Ejemplo de Conversión</h3>
+<blockquote>
+                    Si realizas una compra de un pastel de $350 MXN y un café de $50 MXN (Total $400 MXN), acumulas <strong>40 Puntos Mágicos</strong> en esa visita.
+                </blockquote>
+</div>
+</section>
+<section id="calculadora" style="background-color: var(--color-blanco);">
+<div class="container">
+<div class="calculadora-box">
+<h3>Calcula tus Puntos Mágicos</h3>
+<p>Ingresa el monto de tu compra para ver cuántos puntos ganarías.</p>
+<label for="input-gasto">Monto de mi compra (MXN): $</label>
+<input id="input-gasto" min="0" placeholder="Ej. 350" type="number"/>
+<p class="resultado">
+                        Acumularías aproximadamente: 
+                        <span id="puntos-resultado">0</span> Puntos Mágicos
+                    </p>
+</div>
+</div>
+</section>
+<section id="niveles">
+<div class="container">
+<h2>Sube de Nivel, Sube la Dulzura</h2>
+<div class="niveles-grid">
+<article class="nivel-card" id="nivel-nuez">
+<span class="icon">🌰</span>
+<h3>Nivel Nuez</h3>
+<p class="rango-puntos">(0 - 249 Puntos)</p>
+<ul>
+<li>Bono de Bienvenida (25 Puntos).</li>
+<li>Acumulación estándar.</li>
+<li>Noticias y promociones.</li>
+</ul>
+</article>
+<article class="nivel-card" id="nivel-queso">
+<span class="icon">🧀</span>
+<h3>Nivel Queso</h3>
+<p class="rango-puntos">(250 - 749 Puntos)</p>
+<ul>
+<li>Beneficios Nivel Nuez.</li>
+<li>Bebida gratis (café o té) en tu cumpleaños.</li>
+<li>Acceso a ventas anticipadas.</li>
+</ul>
+</article>
+<article class="nivel-card" id="nivel-manjar">
+<span class="icon">🍯</span>
+<h3>Nivel Manjar</h3>
+<p class="rango-puntos">(750 - 1499 Puntos)</p>
+<ul>
+<li>Beneficios Nivel Queso.</li>
+<li>Rebanada de pastel gratis en tu cumpleaños.</li>
+<li>Puntos x1.25 en compras especiales.</li>
+</ul>
+</article>
+<article class="nivel-card" id="nivel-mermelada">
+<span class="icon">🍓</span>
+<h3>Nivel Mermelada</h3>
+<p class="rango-puntos">(1500+ Puntos)</p>
+<ul>
+<li>Beneficios Nivel Manjar.</li>
+<li>Pastelito individual gratis en tu aniversario.</li>
+<li>Puntos x1.5 en compras especiales.</li>
+<li>Invitación a catas y talleres.</li>
+</ul>
+</article>
+</div>
+</div>
+</section>
+<section id="recompensas">
+<div class="container">
+<h2>Catálogo de Recompensas</h2>
+<p>Estos son algunos de los premios que podrás canjear. ¡El catálogo se actualiza constantemente!</p>
+<div class="grid-2col">
+<div>
+<h4>🍮 Pequeñas Delicias (50 - 100 Puntos)</h4>
+<ul>
+<li>Café Americano</li>
+<li>Té Caliente</li>
+<li>Galleta de Chispas Artesanal</li>
+<li>Agua Embotellada</li>
+</ul>
+<h4>🍰 Medianas Tentaciones (101 - 300 Puntos)</h4>
+<ul>
+<li>Rebanada de Pastel del Día</li>
+<li>Capuccino o Latte</li>
+<li>Pastelito individual (Cupcake)</li>
+<li>Descuento de $50 MXN</li>
+</ul>
+</div>
+<div>
+<h4>🍓 Grandes Sabores (301 - 800 Puntos)</h4>
+<ul>
+<li>Cheesecake individual</li>
+<li>Frappé Especial</li>
+<li>Descuento de $150 MXN</li>
+<li>Caja de 4 Galletas Surtidas</li>
+</ul>
+<h4>🏆 Premios Premium (801+ Puntos)</h4>
+<ul>
+<li>Pastel Mediano Tradicional</li>
+<li>Descuento de $300 MXN</li>
+<li>Kit de Repostería "Las Delicias"</li>
+<li>Taller de Decoración (Nivel Mermelada)</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="implementacion">
+<div class="container">
+<h2>Implementación y Operativa</h2>
+<div class="grid-2col">
+<div>
+<h3>Registro y Control</h3>
+<p>El registro es 100% digital. Usamos un formulario de Google Forms para capturar tus datos de forma segura. El control de puntos se lleva en nuestra base de datos interna, vinculada a tu número de celular o correo electrónico. ¡Sin tarjetas de plástico!</p>
+</div>
+<div>
+<h3>Proceso en Mostrador / Delivery</h3>
+<p>Al momento de pagar (en tienda o al ordenar por WhatsApp/teléfono), solo necesitas proporcionar tu número de celular. Nuestro personal registrará tu compra y tus Puntos Mágicos se sumarán automáticamente. Para canjear, solo indícalo antes de pagar.</p>
+</div>
+</div>
+<div class="botones-accion">
+<a class="btn btn-register" href="https://forms.gle/tuFormularioGoogle" rel="noopener noreferrer" target="_blank">
+                        Quiero registrarme ahora
+                    </a>
+<button class="btn btn-secondary" id="btn-pdf">
+                        Descargar Resumen del Programa (PDF)
+                    </button>
+</div>
+</div>
+</section>
+<section id="marketing" style="background-color: var(--color-beige);">
+<div class="container">
+<h2 class="marketing-lema">Puntos Mágicos — Tu sabor, tus beneficios.</h2>
+<p style="text-align: center; max-width: 700px; margin: 0 auto;">
+                    Te mantendremos informado de tus puntos, niveles y promociones exclusivas a través de correo electrónico y WhatsApp. Sigue nuestras redes sociales para no perderte los "Días de Puntos Dobles" y lanzamientos especiales solo para miembros del Club Mágico.
+                </p>
+<img alt="Ilustración decorativa de un pastel artesanal de Las Delicias" class="img-decorativa" src="https://via.placeholder.com/500x300.png/FFDAB9/5A3825?text=Imagen+Pastel+Las+Delicias"/>
+<img alt="Pastel artesanal de Las Delicias" class="img-decorativa" src="2.png" style="display:block;max-width:100%;width:500px;height:auto;margin:30px auto;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.15);"/></div>
+</section>
+<section id="kpis">
+<div class="container">
+<h2>Evaluación del Programa (KPIs)</h2>
+<p style="text-align: center; margin-bottom: 30px;">Nos comprometemos a medir el éxito del programa para mejorarlo continuamente.</p>
+<div class="kpi-grid">
+<div class="kpi-card">
+<div class="kpi-titulo">Tasa de Registro</div>
+<div class="kpi-valor">📈</div>
+<div class="kpi-desc">Nuevos miembros / Total clientes</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-titulo">Frecuencia de Compra</div>
+<div class="kpi-valor">🔄</div>
+<div class="kpi-desc">Visitas de miembros vs. no miembros</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-titulo">Ratio de Canje</div>
+<div class="kpi-valor">🎁</div>
+<div class="kpi-desc">Puntos canjeados / Puntos emitidos</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-titulo">Ticket Promedio</div>
+<div class="kpi-valor">💰</div>
+<div class="kpi-desc">Gasto de miembros activos</div>
+</div>
+</div>
+</div>
+</section>
+<section id="flujo-beneficios">
+<div class="container">
+<div class="grid-2col">
+<div>
+<h3>🗺️ Flujo de Ejemplo (Cliente)</h3>
+<ol>
+<li>Cliente se registra vía Google Forms.</li>
+<li>Recibe 25 Puntos de bienvenida.</li>
+<li>Realiza una compra de $200 (Gana 20 Puntos).</li>
+<li>Total: 45 Puntos.</li>
+<li>En su siguiente visita, compra $100 (Gana 10 Puntos).</li>
+<li>Total: 55 Puntos.</li>
+<li>Cliente decide canjear 50 Puntos por un café gratis.</li>
+<li>Saldo restante: 5 Puntos.</li>
+</ol>
+</div>
+<div>
+<h3>🌟 Beneficios Estratégicos</h3>
+<ol>
+<li>Mejorar la retención de clientes.</li>
+<li>Obtener datos valiosos (preferencias de compra).</li>
+<li>Diferenciación competitiva (valor artesanal).</li>
+<li>Canal de comunicación directo (marketing).</li>
+<li>Sentido de pertenencia y comunidad.</li>
+
+</ol></div>
+</div>
+</div>
+</section>
+</main>
+<footer class="main-footer">
+<div class="container">
+<div class="footer-links">
+<a href="#terminos" title="Términos y Condiciones">Términos y Condiciones</a>
+<a href="#privacidad" title="Política de Privacidad">Política de Privacidad</a>
+<a href="https://wa.me/521234567890" rel="noopener noreferrer" target="_blank" title="Contactar por WhatsApp">WhatsApp</a>
+<a href="https://instagram.com/lasdelicias" rel="noopener noreferrer" target="_blank" title="Seguir en Instagram">Instagram</a>
+</div>
+<p class="copyright">
+                © 2025 Pastelería Las Delicias. Todos los derechos reservados.<br/>
+                Programa de Lealtad "Puntos Mágicos".
+            </p>
+</div>
+</footer>
+<script>
+        // Esperar a que el DOM esté cargado
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- Funcionalidad 1: Calculadora de Puntos ---
+            const inputGasto = document.getElementById('input-gasto');
+            const spanResultado = document.getElementById('puntos-resultado');
+            
+            if (inputGasto && spanResultado) {
+                inputGasto.addEventListener('input', function() {
+                    // Obtener el valor y asegurar que sea un número
+                    const gasto = parseFloat(inputGasto.value) || 0;
+                    
+                    // Calcular puntos (1 punto por cada $10)
+                    const puntos = Math.floor(gasto / 10);
+                    
+                    // Mostrar el resultado
+                    spanResultado.textContent = puntos;
+                });
+            }
+
+            // --- Funcionalidad 2: Botón "Descargar PDF" (Simulación con window.print) ---
+            const btnPdf = document.getElementById('btn-pdf');
+            
+            if (btnPdf) {
+                btnPdf.addEventListener('click', function(e) {
+                    e.preventDefault(); // Prevenir cualquier acción por defecto
+                    
+                    // Usar la función de impresión del navegador
+                    // Los estilos @media print se encargarán del formato
+                    window.print();
+                });
+            }
+            
+        });
+    </script>
+
+<a class="btn-whatsapp" href="https://wa.me/529614389116" rel="noopener noreferrer" target="_blank">
+<img alt="WhatsApp" src="https://cdn-icons-png.flaticon.com/512/733/733585.png"/>
+</a>
+<style>
+.btn-whatsapp {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background-color: #25D366;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    transition: transform 0.3s ease;
+}
+.btn-whatsapp:hover {
+    transform: scale(1.1);
+}
+.btn-whatsapp img {
+    width: 36px;
+    height: 36px;
+}
+@media print {
+    .btn-whatsapp { display: none !important; }
+}
+</style>
+</body>
+</html>
