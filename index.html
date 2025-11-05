@@ -23,7 +23,208 @@
 <a class="btn btn-register" href="https://forms.gle/tuFormularioGoogle" rel="noopener noreferrer" target="_blank">
             Regístrate en el Club Mágico
         </a>
+        <button class="btn btn-secondary" id="btn-toggle-personas" style="margin-top: 15px;">
+            👥 Ver Buyer Personas
+        </button>
 </header>
+
+<!-- Sección Collapsible de Buyer Personas -->
+<section id="buyer-personas-section" class="buyer-personas-collapsible" style="display: none;">
+    <div class="container">
+        <h2>Conoce a Nuestros Clientes</h2>
+        <div class="personas-grid">
+            
+            <article class="persona-card">
+                <header class="persona-header">
+                    <div class="avatar">👤</div>
+                    <div>
+                        <h3>Mariana</h3>
+                        <p class="tagline-persona">La Detallista Emocional</p>
+                    </div>
+                </header>
+                
+                <div class="persona-kpis">
+                    <div class="kpi-chip">
+                        <span class="icon">💸</span>
+                        <div class="label">Ticket Prom.</div>
+                        <div class="value">$350</div>
+                    </div>
+                    <div class="kpi-chip">
+                        <span class="icon">📅</span>
+                        <div class="label">Frecuencia</div>
+                        <div class="value">1 / mes</div>
+                    </div>
+                    <div class="kpi-chip">
+                        <span class="icon">🎯</span>
+                        <div class="label">Fidelidad</div>
+                        <div class="value">80%</div>
+                    </div>
+                </div>
+                
+                <ul class="icon-list">
+                    <li><span class="icon">💔</span> <strong>Dolor:</strong> Olvidar fechas importantes; regalos genéricos.</li>
+                    <li><span class="icon">💖</span> <strong>Motivador:</strong> Regalos únicos y personalizados; sentirse especial.</li>
+                    <li><span class="icon">📱</span> <strong>Canal:</strong> Instagram (visual), recomendaciones.</li>
+                </ul>
+                
+                <footer class="persona-footer">
+                    <button class="btn btn-secondary btn-strategy" 
+                            data-persona="Mariana" 
+                            data-strategy="Recordatorios de fechas especiales (vía email/WA).;Ofrecer personalización (ej. toppers, mensajes) y asociarla a Puntos Mágicos.">
+                        Ver Estrategia
+                    </button>
+                </footer>
+            </article>
+            
+            <article class="persona-card">
+                <header class="persona-header">
+                    <div class="avatar">👤</div>
+                    <div>
+                        <h3>Carlos</h3>
+                        <p class="tagline-persona">El Práctico Recurrente</p>
+                    </div>
+                </header>
+                
+                <div class="persona-kpis">
+                    <div class="kpi-chip">
+                        <span class="icon">💸</span>
+                        <div class="label">Ticket Prom.</div>
+                        <div class="value">$150</div>
+                    </div>
+                    <div class="kpi-chip">
+                        <span class="icon">📅</span>
+                        <div class="label">Frecuencia</div>
+                        <div class="value">2 / semana</div>
+                    </div>
+                    <div class="kpi-chip">
+                        <span class="icon">🎯</span>
+                        <div class="label">Fidelidad</div>
+                        <div class="value">65%</div>
+                    </div>
+                </div>
+                
+                <ul class="icon-list">
+                    <li><span class="icon">💔</span> <strong>Dolor:</strong> Mal café, servicio lento por la mañana.</li>
+                    <li><span class="icon">💖</span> <strong>Motivador:</strong> Calidad consistente, rapidez, beneficios por lealtad (café gratis).</li>
+                    <li><span class="icon">📱</span> <strong>Canal:</strong> WhatsApp (pedidos rápidos), Google Maps.</li>
+                </ul>
+                
+                <footer class="persona-footer">
+                    <button class="btn btn-secondary btn-strategy" 
+                            data-persona="Carlos" 
+                            data-strategy="Promociones de café + postre (ej. 'Tu 5to café es gratis').;Impulsar el Nivel Queso como el ideal para él (bebida de cumpleaños).">
+                        Ver Estrategia
+                    </button>
+                </footer>
+            </article>
+            
+            <article class="persona-card">
+                <header class="persona-header">
+                    <div class="avatar">👤</div>
+                    <div>
+                        <h3>Laura</h3>
+                        <p class="tagline-persona">La Celebradora de Eventos</p>
+                    </div>
+                </header>
+                
+                <div class="persona-kpis">
+                    <div class="kpi-chip">
+                        <span class="icon">💸</span>
+                        <div class="label">Ticket Prom.</div>
+                        <div class="value">$800</div>
+                    </div>
+                    <div class="kpi-chip">
+                        <span class="icon">📅</span>
+                        <div class="label">Frecuencia</div>
+                        <div class="value">4 / año</div>
+                    </div>
+                    <div class="kpi-chip">
+                        <span class="icon">🎯</span>
+                        <div class="label">Fidelidad</div>
+                        <div class="value">90%</div>
+                    </div>
+                </div>
+                
+                <ul class="icon-list">
+                    <li><span class="icon">💔</span> <strong>Dolor:</strong> Que el pastel del evento falle (sabor, diseño).</li>
+                    <li><span class="icon">💖</span> <strong>Motivador:</strong> Confianza, calidad premium, sorprender a invitados.</li>
+                    <li><span class="icon">📱</span> <strong>Canal:</strong> Recomendación (WOM), eventos pasados.</li>
+                </ul>
+                
+                <footer class="persona-footer">
+                    <button class="btn btn-secondary btn-strategy" 
+                            data-persona="Laura" 
+                            data-strategy="Enfocarla en el Nivel Mermelada (beneficios premium, catas).;Crear 'Paquetes de Celebración' que acumulen puntos extra.">
+                        Ver Estrategia
+                    </button>
+                </footer>
+            </article>
+            
+        </div>
+
+        <div class="comparativa-chart" style="margin-top: 40px;">
+            <h3>Comparativa Visual</h3>
+            <div class="chart-group">
+                <h4>Ticket Promedio (Max $800)</h4>
+                <div class="chart-row">
+                    <span class="chart-label">Mariana</span>
+                    <div class="chart-bar-container">
+                        <div class="chart-bar bar-mariana" style="width: 43.75%;"></div>
+                    </div>
+                </div>
+                <div class="chart-row">
+                    <span class="chart-label">Carlos</span>
+                    <div class="chart-bar-container">
+                        <div class="chart-bar bar-carlos" style="width: 18.75%;"></div>
+                    </div>
+                </div>
+                <div class="chart-row">
+                    <span class="chart-label">Laura</span>
+                    <div class="chart-bar-container">
+                        <div class="chart-bar bar-laura" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="journey-map" style="margin-top: 40px;">
+            <h3 style="text-align: center; margin-bottom: 30px;">Recorrido del Cliente</h3>
+            <div class="journey-steps">
+                <div class="journey-step">
+                    <div class="icon">📱</div>
+                    <h4>1. Descubrir</h4>
+                    <p>Cliente nos ve en Instagram o por un amigo.</p>
+                </div>
+                <div class="journey-step">
+                    <div class="icon">🛒</div>
+                    <h4>2. Comprar</h4>
+                    <p>Realiza su primera compra en tienda o delivery.</p>
+                </div>
+                <div class="journey-step">
+                    <div class="icon">🎁</div>
+                    <h4>3. Participar</h4>
+                    <p>Se une al Club Mágico y acumula puntos.</p>
+                </div>
+                <div class="journey-step">
+                    <div class="icon">❤️</div>
+                    <h4>4. Recomendar</h4>
+                    <p>Canjea premios y comparte su experiencia.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modales para las estrategias -->
+<div class="modal-overlay" id="modal-strategy" role="dialog" aria-modal="true" aria-labelledby="modal-strategy-title" aria-hidden="true">
+    <div class="modal-content">
+        <button class="modal-close" aria-label="Cerrar modal">&times;</button>
+        <h3 id="modal-strategy-title">Estrategia para: <span></span></h3>
+        <ul class="icon-list" id="modal-strategy-content">
+        </ul>
+    </div>
+</div>
+
 <main>
 <section id="idea">
 <div class="container">
