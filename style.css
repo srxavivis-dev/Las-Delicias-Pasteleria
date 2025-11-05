@@ -631,6 +631,10 @@
         BUYER PERSONAS COLLAPSIBLE SECTION
         ---------------------------------------------
         */
+        .hidden {
+            display: none !important;
+        }
+
         .buyer-personas-collapsible {
             background-color: var(--color-beige);
             padding: 50px 20px;

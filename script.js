@@ -37,13 +37,17 @@
 
             if (btnTogglePersonas && personasSection) {
                 btnTogglePersonas.addEventListener('click', function() {
-                    if (personasSection.style.display === 'none') {
-                        personasSection.style.display = 'block';
+                    const isHidden = personasSection.classList.contains('hidden');
+                    
+                    if (isHidden) {
+                        personasSection.classList.remove('hidden');
                         btnTogglePersonas.textContent = '🔼 Ocultar Buyer Personas';
                         // Scroll suave a la sección
-                        personasSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        setTimeout(function() {
+                            personasSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 100);
                     } else {
-                        personasSection.style.display = 'none';
+                        personasSection.classList.add('hidden');
                         btnTogglePersonas.textContent = '👥 Ver Buyer Personas';
                     }
                 });
@@ -107,7 +111,14 @@
                 strategyButtons.forEach(button => {
                     button.addEventListener('click', function() {
                         const persona = this.getAttribute('data-persona');
-                        const strategyData = this.getAttribute('data-strategy').split(';');
+                        const strategyAttr = this.getAttribute('data-strategy');
+                        
+                        if (!strategyAttr) {
+                            console.warn('No strategy data found for persona:', persona);
+                            return;
+                        }
+                        
+                        const strategyData = strategyAttr.split(';');
                         
                         // Poblar el modal
                         if (modalStrategyTitleSpan) {
