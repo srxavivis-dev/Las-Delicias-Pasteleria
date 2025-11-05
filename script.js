@@ -129,7 +129,11 @@
                         strategyData.forEach(item => {
                             if (item.trim()) {
                                 const li = document.createElement('li');
-                                li.innerHTML = `<span class="icon">🎯</span> ${item.trim()}`;
+                                const iconSpan = document.createElement('span');
+                                iconSpan.className = 'icon';
+                                iconSpan.textContent = '🎯';
+                                li.appendChild(iconSpan);
+                                li.appendChild(document.createTextNode(' ' + item.trim()));
                                 modalStrategyContent.appendChild(li);
                             }
                         });
