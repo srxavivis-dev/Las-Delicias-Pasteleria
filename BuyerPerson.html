@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Dashboard de Personas y Niveles | Puntos Mágicos · Las Delicias</title>
+    <meta name="description" content="Análisis visual de los buyer persona y niveles del programa Puntos Mágicos de Pastelería Las Delicias.">
+    <meta name="author" content="Pastelería Las Delicias - Marketing">
+    <meta name="robots" content="noindex, nofollow"> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        /* ---------------------------------------------
+        VARIABLES GLOBALES (Fácil de editar)
+        ---------------------------------------------
+        */
+        :root {
+            /* Paleta Base */
+            --color-rosa-pastel: #FFC0CB;
+            --color-durazno: #FFDAB9;
+            --color-crema: #FFF8E1;
+            --color-beige: #F5F0E1;
+            --color-marron-claro: #8B5E3C;
+            --color-marron-oscuro: #5A3825;
+            --color-dorado: #D4AF37;
+            --color-texto: #4E342E;
+            --color-blanco: #FFFFFF;
+            
+            /* Paleta Niveles Específicos */
+            --color-nuez: #8B5E3C;
+            --color-nuez-texto: var(--color-crema);
+            --color-queso: #F5F0E1;
+            --color-queso-texto: var(--color-marron-oscuro);
+            --color-manjar: #F8D774;
+            --color-manjar-texto: var(--color-texto);
+            --color-mermelada: #E15B64;
+            --color-mermelada-texto: var(--color-blanco);
+            
+            /* Tipografía */
+            --font-principal: 'Nunito', sans-serif;
+            --font-display: 'Pacifico', cursive;
+            
+            /* Estilos Visuales */
+            --border-radius: 12px;
+            --shadow-suave: 0 4px 12px rgba(90, 56, 37, 0.1);
+            --shadow-fuerte: 0 6px 15px rgba(90, 56, 37, 0.15);
+        }
+
+        /* ---------------------------------------------
+        RESETS Y ESTILOS BASE (Mobile-First)
+        ---------------------------------------------
+        */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-principal);
+            background-color: var(--color-crema);
+            color: var(--color-texto);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        main {
+            padding-top: 40px;
+        }
+
+        section {
+            padding: 40px 0;
+            margin-bottom: 20px;
+        }
+        
+        /* Títulos de sección */
+        h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            color: var(--color-marron-oscuro);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h3 {
+            font-family: var(--font-principal);
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--color-marron-claro);
+            margin-bottom: 10px;
+        }
+        
+        h4 {
+             font-family: var(--font-display);
+             font-size: 1.5rem;
+             color: var(--color-mermelada);
+        }
+        
+        /* ---------------------------------------------
+        COMPONENTES REUTILIZABLES
+        ---------------------------------------------
+        */
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            font-family: var(--font-principal);
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-suave);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--color-dorado);
+            color: var(--color-blanco);
+        }
+        .btn-primary:hover {
+            background-color: var(--color-marron-claro);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-fuerte);
+        }
+        
+        .btn-secondary {
+            background-color: var(--color-blanco);
+            border-color: var(--color-marron-claro);
+            color: var(--color-marron-claro);
+            font-size: 0.9rem;
+            padding: 8px 16px;
+        }
+        .btn-secondary:hover {
+            background-color: var(--color-marron-claro);
+            color: var(--color-blanco);
+        }
+        
+        /* Para listas con iconos */
+        .icon-list {
+            list-style: none;
+            padding: 0;
+        }
+        .icon-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .icon-list .icon {
+            font-size: 1.2rem;
+            width: 20px; /* Alineación */
+            text-align: center;
+        }
+
+        /* ---------------------------------------------
+        1. HERO SECTION
+        ---------------------------------------------
+        */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 60vh;
+            padding: 40px 20px;
+            background-color: var(--color-beige);
+            background-image: linear-gradient(rgba(255, 248, 225, 0.8), rgba(255, 248, 225, 0.8)), url('https://via.placeholder.com/1200x400.png/FFDAB9/5A3825?text=Pasteler%C3%ADa+Las+Delicias');
+            background-size: cover;
+            background-position: center;
+            border-bottom-left-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+        }
+        
+        .hero-section h1 {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            color: var(--color-marron-oscuro);
+            text-shadow: 2px 2px 4px var(--color-blanco);
+        }
+        
+        .hero-section p {
+            font-size: 1.5rem;
+            color: var(--color-mermelada);
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        /* ---------------------------------------------
+        2. GRID DE BUYER PERSONA
+        ---------------------------------------------
+        */
+        .personas-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Mobile-first: 1 columna */
+            gap: 25px;
+        }
+        
+        .persona-card {
+            background-color: var(--color-blanco);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-suave);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .persona-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-fuerte);
+        }
+        
+        .persona-card header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .persona-card .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--color-durazno);
+            color: var(--color-marron-oscuro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            flex-shrink: 0;
+            border: 3px solid var(--color-blanco);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .persona-card h3 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-family: var(--font-display);
+        }
+        .persona-card .tagline {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-mermelada);
+            margin: 0;
+        }
+        
+        .persona-kpis {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            margin-bottom: 20px;
+            background-color: var(--color-beige);
+            padding: 15px;
+            border-radius: var(--border-radius);
+        }
+        
+        .kpi-chip {
+            text-align: center;
+        }
+        .kpi-chip .icon {
+            font-size: 1.5rem;
+        }
+        .kpi-chip .label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--color-marron-claro);
+        }
+        .kpi-chip .value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-marron-oscuro);
+        }
+        
+        .persona-card footer {
+            margin-top: auto; /* Empuja el botón al fondo */
+            padding-top: 15px;
+        }
+
+        /* ---------------------------------------------
+        3. MINI-INFOGRAFÍA COMPARATIVA
+        ---------------------------------------------
+        */
+        .comparativa-chart {
+            background-color: var(--color-blanco);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-suave);
+        }
+        
+        .chart-group {
+            margin-bottom: 20px;
+        }
+        .chart-group h4 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-family: var(--font-principal);
+            font-weight: 700;
+            color: var(--color-marron-oscuro);
+        }
+        
+        .chart-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 10px;
+        }
+        
+        .chart-label {
+            width: 80px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        
+        .chart-bar-container {
+            flex-grow: 1;
+            background-color: var(--color-beige);
+            border-radius: 50px;
+            height: 20px;
+            overflow: hidden;
+        }
+        
+        .chart-bar {
+            height: 100%;
+            border-radius: 50px;
+            width: var(--width, 0%); /* Se define en HTML */
+            transition: width 0.8s ease-out;
+            animation: growBar 0.8s ease-out;
+        }
+        
+        /* Colores de barras */
+        .bar-mariana { background-color: var(--color-mermelada); }
+        .bar-carlos { background-color: var(--color-manjar); }
+        .bar-laura { background-color: var(--color-marron-claro); }
+        
+        @keyframes growBar {
+            from { width: 0%; }
+            to { width: var(--width); }
+        }
+
+
+        /* ---------------------------------------------
+        4. GRID DE NIVELES
+        ---------------------------------------------
+        */
+        .niveles-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Mobile-first */
+            gap: 20px;
+        }
+        
+        .nivel-tile {
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-suave);
+            border: 4px solid transparent;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nivel-tile:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-fuerte);
+            border-color: var(--color-dorado);
+        }
+        
+        .nivel-tile .icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .nivel-tile h3 {
+            font-size: 1.8rem;
+            font-family: var(--font-display);
+            margin-bottom: 5px;
+        }
+        
+        .nivel-tile .rango-puntos {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .nivel-tile ul {
+            list-style: none;
+            padding: 0;
+        }
+        .nivel-tile li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border-radius: 50px;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Colores de Niveles (requerido) */
+        #nivel-nuez { background-color: var(--color-nuez); color: var(--color-nuez-texto); }
+        #nivel-nuez h3 { color: var(--color-nuez-texto); }
+        
+        #nivel-queso { background-color: var(--color-queso); color: var(--color-queso-texto); }
+        #nivel-queso h3 { color: var(--color-queso-texto); }
+
+        #nivel-manjar { background-color: var(--color-manjar); color: var(--color-manjar-texto); }
+        #nivel-manjar h3 { color: var(--color-manjar-texto); }
+
+        #nivel-mermelada { background-color: var(--color-mermelada); color: var(--color-mermelada-texto); }
+        #nivel-mermelada h3 { color: var(--color-mermelada-texto); }
+        #nivel-mermelada .badge { background-color: rgba(0, 0, 0, 0.1); }
+
+
+        /* ---------------------------------------------
+        5. MAPA DE RECORRIDO (CUSTOMER JOURNEY)
+        ---------------------------------------------
+        */
+        .journey-map {
+            display: flex;
+            flex-direction: column; /* Mobile-first */
+            gap: 20px;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .journey-step {
+            text-align: center;
+            padding: 20px;
+            background: var(--color-blanco);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-suave);
+            flex: 1;
+            position: relative;
+        }
+        
+        .journey-step .icon {
+            font-size: 2.5rem;
+            color: var(--color-dorado);
+            margin-bottom: 10px;
+        }
+        
+        .journey-step h4 {
+            font-size: 1.2rem;
+            font-family: var(--font-principal);
+            font-weight: 700;
+            color: var(--color-marron-oscuro);
+        }
+        
+        .journey-step p {
+            font-size: 0.9rem;
+            color: var(--color-texto);
+        }
+
+        /* ---------------------------------------------
+        6. PANEL DE ACCIONES RÁPIDAS
+        ---------------------------------------------
+        */
+        .acciones-panel {
+            background-color: var(--color-beige);
+            padding: 40px 20px;
+            border-radius: var(--border-radius);
+        }
+        
+        .acciones-grid {
+            display: flex;
+            flex-direction: column; /* Mobile-first */
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .acciones-grid .btn {
+            width: 100%;
+            max-width: 300px; /* Limitar ancho en móvil */
+        }
+        
+        /* ---------------------------------------------
+        7. MODALES
+        ---------------------------------------------
+        */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(90, 56, 37, 0.7);
+            display: none; /* Oculto por defecto */
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background-color: var(--color-blanco);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-fuerte);
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.8rem;
+            line-height: 1;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--color-marron-claro);
+        }
+        .modal-close:hover {
+            color: var(--color-mermelada);
+        }
+        
+        .modal-content h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--color-marron-oscuro);
+        }
+        
+        #whatsapp-template {
+            background-color: var(--color-beige);
+            border: 2px dashed var(--color-marron-claro);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            font-style: italic;
+        }
+
+        /* ---------------------------------------------
+        FOOTER
+        ---------------------------------------------
+        */
+        .main-footer {
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+            color: var(--color-marron-claro);
+            margin-top: 20px;
+            border-top: 2px solid var(--color-beige);
+        }
+
+        /* ---------------------------------------------
+        MEDIA QUERIES (DESKTOP)
+        ---------------------------------------------
+        */
+        @media (min-width: 768px) {
+            .hero-section {
+                min-height: 50vh;
+            }
+            .hero-section h1 {
+                font-size: 4.5rem;
+            }
+
+            .personas-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+            
+            .niveles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .journey-map {
+                flex-direction: row; /* Horizontal en desktop */
+                gap: 0;
+                align-items: stretch;
+            }
+            
+            /* Flechas conectoras */
+            .journey-step {
+                flex: 1;
+            }
+            .journey-step:not(:last-child)::after {
+                content: '→';
+                font-size: 2.5rem;
+                color: var(--color-dorado);
+                position: absolute;
+                top: 50%;
+                right: -25px; /* Ajustar posición */
+                transform: translateY(-50%);
+                z-index: 10;
+            }
+            
+            .acciones-grid {
+                flex-direction: row;
+            }
+            .acciones-grid .btn {
+                width: auto;
+                max-width: none;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .niveles-grid {
+                grid-template-columns: repeat(4, 1fr); /* 4 columnas en desktop grande */
+            }
+        }
+        
+        /* ---------------------------------------------
+        ESTILOS DE IMPRESIÓN (Para "Exportar")
+        ---------------------------------------------
+        */
+        @media print {
+            body {
+                background-color: var(--color-blanco);
+                color: #000;
+            }
+            
+            .hero-section, .acciones-panel, .main-footer, .modal-overlay {
+                display: none;
+            }
+            
+            section {
+                padding: 20px 0;
+                box-shadow: none;
+                margin-bottom: 15px;
+            }
+            
+            h2, h3, h4 {
+                color: #000 !important;
+                text-shadow: none;
+                page-break-after: avoid;
+            }
+            
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+            
+            .personas-grid, .niveles-grid {
+                grid-template-columns: 1fr 1fr; /* 2 columnas en impresión */
+                gap: 15px;
+            }
+            
+            .persona-card, .nivel-tile, .comparativa-chart, .journey-step {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                page-break-inside: avoid;
+            }
+            
+            /* Forzar impresión de colores de fondo de niveles */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            #nivel-nuez { background-color: #8B5E3C !important; color: #FFF8E1 !important; }
+            #nivel-queso { background-color: #F5F0E1 !important; color: #5A3825 !important; }
+            #nivel-manjar { background-color: #F8D774 !important; color: #4E342E !important; }
+            #nivel-mermelada { background-color: #E15B64 !important; color: #FFFFFF !important; }
+            
+            .journey-map {
+                flex-direction: column;
+            }
+            .journey-step::after {
+                display: none; /* Ocultar flechas */
+            }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <header class="hero-section">
+        <h1>Buyer Personas</h1>
+        <p>Puntos Mágicos · Las Delicias</p>
+        <a href="#buyer-personas" class="btn btn-primary" id="btn-scroll">Ver Perfiles</a>
+    </header>
+
+    <main>
+        <div class="container">
+
+            <section id="buyer-personas">
+                <h2>Conoce a Nuestros Clientes</h2>
+                <div class="personas-grid" id="personas-export-area">
+                    
+                    <article class="persona-card">
+                        <header>
+                            <div class="avatar">👤</div>
+                            <div>
+                                <h3>Mariana</h3>
+                                <p class="tagline">La Detallista Emocional</p>
+                            </div>
+                        </header>
+                        
+                        <div class="persona-kpis">
+                            <div class="kpi-chip">
+                                <span class="icon">💸</span>
+                                <div class="label">Ticket Prom.</div>
+                                <div class="value">$350</div>
+                            </div>
+                            <div class="kpi-chip">
+                                <span class="icon">📅</span>
+                                <div class="label">Frecuencia</div>
+                                <div class="value">1 / mes</div>
+                            </div>
+                            <div class="kpi-chip">
+                                <span class="icon">🎯</span>
+                                <div class="label">Fidelidad</div>
+                                <div class="value">80%</div>
+                            </div>
+                        </div>
+                        
+                        <ul class="icon-list">
+                            <li><span class="icon">💔</span> <strong>Dolor:</strong> Olvidar fechas importantes; regalos genéricos.</li>
+                            <li><span class="icon">💖</span> <strong>Motivador:</strong> Regalos únicos y personalizados; sentirse especial.</li>
+                            <li><span class="icon">📱</span> <strong>Canal:</strong> Instagram (visual), recomendaciones.</li>
+                        </ul>
+                        
+                        <footer>
+                            <button class="btn btn-secondary btn-strategy" 
+                                    data-persona="Mariana" 
+                                    data-strategy="Recordatorios de fechas especiales (vía email/WA).;Ofrecer personalización (ej. toppers, mensajes) y asociarla a Puntos Mágicos.">
+                                Ver Estrategia
+                            </button>
+                        </footer>
+                    </article>
+                    
+                    <article class="persona-card">
+                        <header>
+                            <div class="avatar">👤</div>
+                            <div>
+                                <h3>Carlos</h3>
+                                <p class="tagline">El Práctico Recurrente</p>
+                            </div>
+                        </header>
+                        
+                        <div class="persona-kpis">
+                            <div class="kpi-chip">
+                                <span class="icon">💸</span>
+                                <div class="label">Ticket Prom.</div>
+                                <div class="value">$150</div>
+                            </div>
+                            <div class="kpi-chip">
+                                <span class="icon">📅</span>
+                                <div class="label">Frecuencia</div>
+                                <div class="value">2 / semana</div>
+                            </div>
+                            <div class="kpi-chip">
+                                <span class="icon">🎯</span>
+                                <div class="label">Fidelidad</div>
+                                <div class="value">65%</div>
+                            </div>
+                        </div>
+                        
+                        <ul class="icon-list">
+                            <li><span class="icon">💔</span> <strong>Dolor:</strong> Mal café, servicio lento por la mañana.</li>
+                            <li><span class="icon">💖</span> <strong>Motivador:</strong> Calidad consistente, rapidez, beneficios por lealtad (café gratis).</li>
+                            <li><span class="icon">📱</span> <strong>Canal:</strong> WhatsApp (pedidos rápidos), Google Maps.</li>
+                        </ul>
+                        
+                        <footer>
+                            <button class="btn btn-secondary btn-strategy" 
+                                    data-persona="Carlos" 
+                                    data-strategy="Promociones de café + postre (ej. 'Tu 5to café es gratis').;Impulsar el Nivel Queso como el ideal para él (bebida de cumpleaños).">
+                                Ver Estrategia
+                            </button>
+                        </footer>
+                    </article>
+                    
+                    <article class="persona-card">
+                        <header>
+                            <div class="avatar">👤</div>
+                            <div>
+                                <h3>Laura</h3>
+                                <p class="tagline">La Celebradora de Eventos</p>
+                            </div>
+                        </header>
+                        
+                        <div class="persona-kpis">
+                            <div class="kpi-chip">
+                                <span class="icon">💸</span>
+                                <div class="label">Ticket Prom.</div>
+                                <div class="value">$800</div>
+                            </div>
+                            <div class="kpi-chip">
+                                <span class="icon">📅</span>
+                                <div class="label">Frecuencia</div>
+                                <div class="value">4 / año</div>
+                            </div>
+                            <div class="kpi-chip">
+                                <span class="icon">🎯</span>
+                                <div class="label">Fidelidad</div>
+                                <div class="value">90%</div>
+                            </div>
+                        </div>
+                        
+                        <ul class="icon-list">
+                            <li><span class="icon">💔</span> <strong>Dolor:</strong> Que el pastel del evento falle (sabor, diseño).</li>
+                            <li><span class="icon">💖</span> <strong>Motivador:</strong> Confianza, calidad premium, sorprender a invitados.</li>
+                            <li><span class="icon">📱</span> <strong>Canal:</strong> Recomendación (WOM), eventos pasados.</li>
+                        </ul>
+                        
+                        <footer>
+                            <button class="btn btn-secondary btn-strategy" 
+                                    data-persona="Laura" 
+                                    data-strategy="Enfocarla en el Nivel Mermelada (beneficios premium, catas).;Crear 'Paquetes de Celebración' que acumulen puntos extra.">
+                                Ver Estrategia
+                            </button>
+                        </footer>
+                    </article>
+                    
+                </div>
+            </section>
+
+            <section id="comparativa">
+                <h2>Comparativa Visual</h2>
+                <div class="comparativa-chart">
+                    <div class="chart-group">
+                        <h4>Ticket Promedio (Max $800)</h4>
+                        <div class="chart-row">
+                            <span class="chart-label">Mariana</span>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar bar-mariana" style="--width: 43.75%;"></div>
+                            </div>
+                        </div>
+                        <div class="chart-row">
+                            <span class="chart-label">Carlos</span>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar bar-carlos" style="--width: 18.75%;"></div>
+                            </div>
+                        </div>
+                        <div class="chart-row">
+                            <span class="chart-label">Laura</span>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar bar-laura" style="--width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="niveles">
+                <h2>Niveles del Club Mágico</h2>
+                <div class="niveles-grid">
+                    
+                    <article class="nivel-tile" id="nivel-nuez">
+                        <div class="badge"><span>Mejor para</span> 👤</div>
+                        <span class="icon">🌰</span>
+                        <h3>Nivel Nuez</h3>
+                        <p class="rango-puntos">(0 - 249 Puntos)</p>
+                        <ul>
+                            <li>🎁 Bono de Bienvenida</li>
+                            <li>📰 Promociones Generales</li>
+                        </ul>
+                    </article>
+                    
+                    <article class="nivel-tile" id="nivel-queso">
+                        <div class="badge" style="color: var(--color-queso-texto);"><span>Mejor para</span> 👤</div>
+                        <span class="icon">🧀</span>
+                        <h3>Nivel Queso</h3>
+                        <p class="rango-puntos">(250 - 749 Puntos)</p>
+                        <ul>
+                            <li>☕ Bebida gratis en cumple</li>
+                            <li>🛍️ Acceso a ventas anticipadas</li>
+                        </ul>
+                    </article>
+                    
+                    <article class="nivel-tile" id="nivel-manjar">
+                        <div class="badge" style="color: var(--color-manjar-texto);"><span>Mejor para</span> 👤</div>
+                        <span class="icon">🍯</span>
+                        <h3>Nivel Manjar</h3>
+                        <p class="rango-puntos">(750 - 1499 Puntos)</p>
+                        <ul>
+                            <li>🍰 Rebanada gratis en cumple</li>
+                            <li>✨ Puntos x1.25 (eventos)</li>
+                        </ul>
+                    </article>
+                    
+                    <article class="nivel-tile" id="nivel-mermelada">
+                        <div class="badge"><span>Mejor para</span> 👤</div>
+                        <span class="icon">🍓</span>
+                        <h3>Nivel Mermelada</h3>
+                        <p class="rango-puntos">(1500+ Puntos)</p>
+                        <ul>
+                            <li>🎉 Pastelito en aniversario</li>
+                            <li>🏆 Invitación a catas</li>
+                        </ul>
+                    </article>
+                    
+                </div>
+            </section>
+            
+            <section id="journey">
+                <h2>Recorrido del Cliente</h2>
+                <div class="journey-map">
+                    <div class="journey-step">
+                        <div class="icon">📱</div>
+                        <h4>1. Descubrir</h4>
+                        <p>Cliente nos ve en Instagram o por un amigo.</p>
+                    </div>
+                    <div class="journey-step">
+                        <div class="icon">🛒</div>
+                        <h4>2. Comprar</h4>
+                        <p>Realiza su primera compra en tienda o delivery.</p>
+                    </div>
+                    <div class="journey-step">
+                        <div class="icon">🎁</div>
+                        <h4>3. Participar</h4>
+                        <p>Se une al Club Mágico y acumula puntos.</p>
+                    </div>
+                    <div class="journey-step">
+                        <div class="icon">❤️</div>
+                        <h4>4. Recomendar</h4>
+                        <p>Canjea premios y comparte su experiencia.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="acciones-panel">
+                <div class="acciones-grid">
+                    <a href="https://forms.gle/tuFormularioGoogle" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                        Abrir Form de Registro
+                    </a>
+                    
+                    <button class="btn btn-secondary" id="btn-download-png">
+                        Descargar Ficha Personas (PNG)
+                    </button>
+                    
+                    <button class="btn btn-secondary" id="btn-open-whatsapp">
+                        Plantilla WhatsApp
+                    </button>
+                    
+                    <button class="btn btn-secondary" id="btn-download-pdf">
+                        Exportar a PDF (Imprimir)
+                    </button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 Pastelería Las Delicias. Dashboard Interno de Marketing.</p>
+    </footer>
+
+    <div class="modal-overlay" id="modal-strategy" role="dialog" aria-modal="true" aria-labelledby="modal-strategy-title" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Cerrar modal">&times;</button>
+            <h3 id="modal-strategy-title">Estrategia para: <span></span></h3>
+            <ul class="icon-list" id="modal-strategy-content">
+                </ul>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="modal-whatsapp" role="dialog" aria-modal="true" aria-labelledby="modal-whatsapp-title" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Cerrar modal">&times;</button>
+            <h3 id="modal-whatsapp-title">Plantilla WhatsApp</h3>
+            <p>Mensaje de ejemplo para captar clientes (como Carlos):</p>
+            <div id="whatsapp-template">
+                <p>¡Hola! ☕ Sabemos que te encanta empezar el día con energía. Pide tu café por aquí y tenlo listo al llegar. <strong>¡Recuerda que con Puntos Mágicos, tu 5to café va por nuestra cuenta!</strong> ✨</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- 1. Smooth Scroll ---
+            const btnScroll = document.getElementById('btn-scroll');
+            if (btnScroll) {
+                btnScroll.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.getElementById('buyer-personas').scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+
+            // --- 2. Lógica de Modales ---
+            const modalOverlays = document.querySelectorAll('.modal-overlay');
+            const closeButtons = document.querySelectorAll('.modal-close');
+            
+            // Función para cerrar todos los modales
+            function closeModal() {
+                modalOverlays.forEach(modal => {
+                    modal.classList.remove('active');
+                    modal.setAttribute('aria-hidden', 'true');
+                });
+            }
+            
+            // Función para abrir un modal específico
+            function openModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.add('active');
+                    modal.setAttribute('aria-hidden', 'false');
+                    // Opcional: enfocar el botón de cerrar para accesibilidad
+                    modal.querySelector('.modal-close').focus();
+                }
+            }
+            
+            // Listeners botones de cerrar
+            closeButtons.forEach(button => {
+                button.addEventListener('click', closeModal);
+            });
+            
+            // Listener para cerrar al hacer clic en el overlay
+            modalOverlays.forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeModal();
+                    }
+                });
+            });
+            
+            // Listener para cerrar con tecla Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+
+            // --- 3. Lógica Modal de Estrategia (Dinámico) ---
+            const strategyButtons = document.querySelectorAll('.btn-strategy');
+            const modalStrategyTitle = document.getElementById('modal-strategy-title').querySelector('span');
+            const modalStrategyContent = document.getElementById('modal-strategy-content');
+
+            strategyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const persona = this.getAttribute('data-persona');
+                    const strategyData = this.getAttribute('data-strategy').split(';'); // Separar por ;
+                    
+                    // Poblar el modal
+                    modalStrategyTitle.textContent = persona;
+                    modalStrategyContent.innerHTML = ''; // Limpiar contenido anterior
+                    
+                    strategyData.forEach(item => {
+                        if (item) {
+                            const li = document.createElement('li');
+                            li.innerHTML = `<span class="icon">🎯</span> ${item}`;
+                            modalStrategyContent.appendChild(li);
+                        }
+                    });
+                    
+                    // Abrir el modal
+                    openModal('modal-strategy');
+                });
+            });
+
+            // --- 4. Lógica Modal de WhatsApp ---
+            const btnWhatsapp = document.getElementById('btn-open-whatsapp');
+            if (btnWhatsapp) {
+                btnWhatsapp.addEventListener('click', function() {
+                    openModal('modal-whatsapp');
+                });
+            }
+
+            // --- 5. Lógica de Exportación ---
+            
+            // A. Exportar a PNG (usando html2canvas)
+            const btnDownloadPNG = document.getElementById('btn-download-png');
+            if (btnDownloadPNG) {
+                btnDownloadPNG.addEventListener('click', function() {
+                    const exportArea = document.getElementById('personas-export-area');
+                    
+                    // Ocultar botones temporalmente para la captura
+                    const ctas = exportArea.querySelectorAll('footer');
+                    ctas.forEach(cta => cta.style.display = 'none');
+                    
+                    html2canvas(exportArea, {
+                        backgroundColor: getComputedStyle(document.body).getPropertyValue('--color-crema'), // Fondo
+                        scale: 1.5 // Mejorar resolución
+                    }).then(canvas => {
+                        // Crear enlace de descarga
+                        const link = document.createElement('a');
+                        link.download = 'buyer-personas-las-delicias.png';
+                        link.href = canvas.toDataURL('image/png');
+                        link.click();
+                        
+                        // Restaurar botones
+                        ctas.forEach(cta => cta.style.display = 'block');
+                    }).catch(err => {
+                        console.error('Error al exportar PNG:', err);
+                        // Restaurar botones en caso de error
+                        ctas.forEach(cta => cta.style.display = 'block');
+                    });
+                });
+            }
+            
+            // B. Exportar a PDF (Fallback con window.print)
+            const btnDownloadPDF = document.getElementById('btn-download-pdf');
+            if(btnDownloadPDF) {
+                btnDownloadPDF.addEventListener('click', function() {
+                    // Los estilos @media print se encargarán del formato
+                    window.print();
+                });
+            }
+
+        });
+    </script>
+    
+</body>
+</html>
